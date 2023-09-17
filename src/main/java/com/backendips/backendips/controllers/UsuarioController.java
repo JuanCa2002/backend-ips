@@ -59,13 +59,13 @@ public class UsuarioController {
         if(currentUsuario == null){
             return ResponseEntity.notFound().build();
         }else{
-            Persona persona = usuario.getPersona();
+            Persona persona = currentUsuario.getPersona();
             persona.setNombre(usuario.getPersona().getNombre());
             persona.setApellido(usuario.getPersona().getApellido());
             persona.setTelefono(usuario.getPersona().getTelefono());
             persona.setCorreo(usuario.getPersona().getCorreo());
             currentUsuario.setPersona(persona);
-            Usuario updatedUsuario = usuarioService.createUsuario(currentUsuario);
+            Usuario updatedUsuario = usuarioService.updateUsuario(currentUsuario);
             return ResponseEntity.ok(updatedUsuario);
         }
     }

@@ -60,13 +60,13 @@ public class MedicoController {
              return ResponseEntity.notFound().build();
          }else{
              currentMedico.setTarjetaProfesional(medico.getTarjetaProfesional());
-             Persona persona = medico.getPersona();
+             Persona persona = currentMedico.getPersona();
              persona.setNombre(medico.getPersona().getNombre());
              persona.setApellido(medico.getPersona().getApellido());
              persona.setTelefono(medico.getPersona().getTelefono());
              persona.setCorreo(medico.getPersona().getCorreo());
              currentMedico.setPersona(persona);
-             Medico updatedMedico = medicoService.createMedico(currentMedico);
+             Medico updatedMedico = medicoService.updateMedico(currentMedico);
              return ResponseEntity.ok(updatedMedico);
          }
     }

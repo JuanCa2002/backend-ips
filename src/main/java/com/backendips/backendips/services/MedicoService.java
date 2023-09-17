@@ -2,6 +2,7 @@ package com.backendips.backendips.services;
 
 import com.backendips.backendips.models.Medico;
 import com.backendips.backendips.models.Persona;
+import com.backendips.backendips.models.Usuario;
 import com.backendips.backendips.repositories.MedicoRepository;
 import com.backendips.backendips.repositories.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,17 @@ public class MedicoService {
 
     public Medico createMedico(Medico medico){
         Persona persona = personaRepository.findLastPerson();
-        medico.getPersona().setCodigo(persona.getCodigo()+1);
+        if(persona == null){
+            medico.getPersona().setCodigo(1);
+        }else{
+            medico.getPersona().setCodigo(persona.getCodigo()+1);
+        }
+        personaRepository.save(medico.getPersona());
+        Medico newMedico = medicoRepository.save(medico);
+        return newMedico;
+    }
+
+    public Medico updateMedico(Medico medico){
         personaRepository.save(medico.getPersona());
         Medico newMedico = medicoRepository.save(medico);
         return newMedico;

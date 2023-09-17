@@ -20,7 +20,17 @@ public class UsuarioService {
 
     public Usuario createUsuario(Usuario usuario){
         Persona persona = personaRepository.findLastPerson();
-        usuario.getPersona().setCodigo(persona.getCodigo()+1);
+        if(persona == null){
+            usuario.getPersona().setCodigo(1);
+        }else{
+            usuario.getPersona().setCodigo(persona.getCodigo()+1);
+        }
+        personaRepository.save(usuario.getPersona());
+        Usuario newUsuario = usuarioRepository.save(usuario);
+        return newUsuario;
+    }
+
+    public Usuario updateUsuario(Usuario usuario){
         personaRepository.save(usuario.getPersona());
         Usuario newUsuario = usuarioRepository.save(usuario);
         return newUsuario;

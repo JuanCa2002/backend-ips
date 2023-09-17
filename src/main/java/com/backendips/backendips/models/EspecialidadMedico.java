@@ -8,7 +8,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="especialidades_medico")
+@Table(name="\"ESPECIALIDADES_MEDICO\"")
 public class EspecialidadMedico {
 
     @Id

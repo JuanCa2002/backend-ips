@@ -1,5 +1,6 @@
 package com.backendips.backendips.services;
 
+import com.backendips.backendips.models.Medico;
 import com.backendips.backendips.models.Paciente;
 import com.backendips.backendips.models.Persona;
 import com.backendips.backendips.repositories.PacienteRepository;
@@ -20,7 +21,17 @@ public class PacienteService {
 
     public Paciente createPaciente(Paciente paciente){
         Persona persona = personaRepository.findLastPerson();
-        paciente.getPersona().setCodigo(persona.getCodigo()+1);
+        if(persona == null){
+            paciente.getPersona().setCodigo(1);
+        }else{
+            paciente.getPersona().setCodigo(persona.getCodigo()+1);
+        }
+        personaRepository.save(paciente.getPersona());
+        Paciente newPaciente = pacienteRepository.save(paciente);
+        return newPaciente;
+    }
+
+    public Paciente updatePaciente(Paciente paciente){
         personaRepository.save(paciente.getPersona());
         Paciente newPaciente = pacienteRepository.save(paciente);
         return newPaciente;

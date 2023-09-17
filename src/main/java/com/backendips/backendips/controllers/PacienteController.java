@@ -58,7 +58,7 @@ public class PacienteController {
         if(currentPaciente == null){
             return ResponseEntity.notFound().build();
         }else{
-            Persona persona = paciente.getPersona();
+            Persona persona = currentPaciente.getPersona();
             persona.setNombre(paciente.getPersona().getNombre());
             persona.setApellido(paciente.getPersona().getApellido());
             persona.setTelefono(paciente.getPersona().getTelefono());
@@ -66,7 +66,7 @@ public class PacienteController {
             persona.setTipo_identificacion(paciente.getPersona().getTipo_identificacion());
             currentPaciente.setPersona(persona);
             currentPaciente.setEps(paciente.getEps());
-            Paciente updatedPaciente = pacienteService.createPaciente(currentPaciente);
+            Paciente updatedPaciente = pacienteService.updatePaciente(currentPaciente);
             return ResponseEntity.ok(updatedPaciente);
         }
     }
