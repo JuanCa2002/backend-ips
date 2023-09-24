@@ -20,11 +20,11 @@ public class PacienteService {
     private PersonaRepository personaRepository;
 
     public Paciente createPaciente(Paciente paciente){
-        Persona persona = personaRepository.findLastPerson();
-        if(persona == null){
+        Persona lastPerson = personaRepository.findLastPerson();
+        if(lastPerson == null){
             paciente.getPersona().setCodigo(1);
         }else{
-            paciente.getPersona().setCodigo(persona.getCodigo()+1);
+            paciente.getPersona().setCodigo(lastPerson.getCodigo()+1);
         }
         personaRepository.save(paciente.getPersona());
         Paciente newPaciente = pacienteRepository.save(paciente);
@@ -50,5 +50,11 @@ public class PacienteService {
         personaRepository.delete(paciente.getPersona());
     }
 
-
+    public Paciente getPacienteByDocumento(String numero_documento){
+       Paciente paciente = pacienteRepository.findPacienteByNumeroDocumento(numero_documento);
+       if(paciente == null){
+           return null;
+       }
+       return paciente;
+    }
 }

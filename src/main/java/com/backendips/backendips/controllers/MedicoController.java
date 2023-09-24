@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/medico")
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-public class MedicoController {
+public class    MedicoController {
 
     @Autowired
     private MedicoService medicoService;
