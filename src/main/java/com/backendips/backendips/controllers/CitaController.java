@@ -51,8 +51,8 @@ public class CitaController {
         return ResponseEntity.ok(citaAux);
     }
 
-    @PutMapping("/{idCita}/{idEstadoCita}")
-    public ResponseEntity<Cita> updateEstadoCita(@PathVariable int idCita,@PathVariable int idEstadoCita){
+    @PutMapping
+    public ResponseEntity<Cita> updateEstadoCita(@RequestParam("idCita") int idCita,@RequestParam("idEstadoCita") int idEstadoCita){
         Cita cita= citaService.getCitaById(idCita);
         if(cita == null){
             return ResponseEntity.notFound().build();
