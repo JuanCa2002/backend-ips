@@ -70,4 +70,13 @@ public class PacienteController {
             return ResponseEntity.ok(updatedPaciente);
         }
     }
+
+    @GetMapping("/documento/{numero_documento}")
+    public ResponseEntity<Paciente>getPacienteByNumeroDocumento(@PathVariable String numero_documento){
+        Paciente paciente = pacienteService.getPacienteByDocumento(numero_documento);
+        if (paciente== null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(paciente);
+    }
 }

@@ -50,5 +50,11 @@ public class PacienteService {
         personaRepository.delete(paciente.getPersona());
     }
 
-
+    public Paciente getPacienteByDocumento(String numero_documento){
+       Paciente paciente = pacienteRepository.findPacienteByNumeroDocumento(numero_documento);
+       if(paciente == null){
+           return null;
+       }
+       return paciente;
+    }
 }

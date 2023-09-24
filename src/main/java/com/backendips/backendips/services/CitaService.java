@@ -78,4 +78,12 @@ public class CitaService {
         }
     }
 
+    public List<Cita> getCitaByEspecialidad(int idEspecialidad){
+        return citaRepository.findCitasByEspecialidad(idEspecialidad);
+    }
+
+    public List<Cita>getCitaByEspecialidadAndMedico(int idEspecialidad,String nombreMedico){
+        return citaRepository.findCitasByEspecialidadAndMedico( idEspecialidad,nombreMedico);
+    }
+
 }

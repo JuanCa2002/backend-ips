@@ -69,6 +69,23 @@ public class CitaController {
         }
         citaService.deleteCita(id);
         return ResponseEntity.ok(cita);
+    }
 
+    @GetMapping("/cita_especialidad/{idEspecialidad}")
+    public ResponseEntity<List<Cita>> getCitasByEspecialidad(@PathVariable int idEspecialidad){
+        List<Cita> citas = citaService.getCitaByEspecialidad(idEspecialidad);
+        if (citas == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(citas);
+    }
+
+    @GetMapping("/{idEspecialidad}/{nombreMedico}")
+    public ResponseEntity<List<Cita>> getCitasByEspecialidadAndMedico(@PathVariable int idEspecialidad,@PathVariable String nombreMedico){
+        List<Cita> citas = citaService.getCitaByEspecialidadAndMedico(idEspecialidad,nombreMedico);
+        if (citas == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(citas);
     }
 }
