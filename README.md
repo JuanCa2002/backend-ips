@@ -31,7 +31,7 @@ La base de datos de la aplicación se gestiona utilizando MySQL Workbench. A con
 - **`medicos`**: Contiene datos sobre los médicos, como nombres, especialidades, etc.
 - **`citas`**: Registra las citas programadas, incluidos detalles como fecha, hora, estado de la cita, paciente y médico.
 - **`encargados`**: Almacena información sobre los encargados que pueden gestionar citas en nombre de los pacientes.
-- **`agenda`**: Almacena información sobre las citas como la fecha, el médico y el código.
+- **`Especialidades`**: Almacena información sobre las especialidades del medico.
 
 ## Configuración
 
