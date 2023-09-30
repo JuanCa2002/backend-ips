@@ -4,9 +4,13 @@ import com.backendips.backendips.models.Cita;
 import com.backendips.backendips.models.Paciente;
 import com.backendips.backendips.services.CitaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -51,15 +55,35 @@ public class CitaController {
         return ResponseEntity.ok(citaAux);
     }
 
+
     @PutMapping
     public ResponseEntity<Cita> updateEstadoCita(@RequestParam("idCita") int idCita,@RequestParam("idEstadoCita") int idEstadoCita){
-        Cita cita= citaService.getCitaById(idCita);
+   Cita cita= citaService.getCitaById(idCita);
         if(cita == null){
             return ResponseEntity.notFound().build();
         }
         Cita citaAux= citaService.updateEstadoCita(idCita,idEstadoCita);
         return ResponseEntity.ok(citaAux);
     }
+
+    @GetMapping("/medico/{idMedico}")
+    public ResponseEntity<List<Cita>> getCitasByMedicoAndFecha(@PathVariable int idMedico,@RequestParam("fecha") String fecha){
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date fechaAux = dateFormat.parse(fecha);
+            List<Cita> citas=citaService.getCitasByMedicoAndFecha(idMedico,fechaAux);
+            if(citas.isEmpty()){
+                return ResponseEntity.noContent().build();
+            }
+            return ResponseEntity.ok(citas);
+        }catch (ParseException e){
+            return ResponseEntity.badRequest().build();
+        }
+
+    }
+
+
+       
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Cita> deleteCita(@PathVariable int id){
@@ -88,4 +112,6 @@ public class CitaController {
         }
         return ResponseEntity.ok(citas);
     }
+
+
 }

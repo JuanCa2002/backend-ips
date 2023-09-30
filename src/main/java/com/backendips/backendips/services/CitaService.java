@@ -8,6 +8,7 @@ import com.backendips.backendips.repositories.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -84,6 +85,10 @@ public class CitaService {
 
     public List<Cita>getCitaByEspecialidadAndMedico(int idEspecialidad,String nombreMedico){
         return citaRepository.findCitasByEspecialidadAndMedico( idEspecialidad,nombreMedico);
+    }
+
+    public List<Cita>getCitasByMedicoAndFecha(int idMedico, Date fecha){
+        return citaRepository.findCitasByMedicoAndFecha(idMedico,fecha);
     }
 
 }

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 
 public interface CitaRepository extends JpaRepository<Cita,Integer> {
@@ -22,6 +23,7 @@ public interface CitaRepository extends JpaRepository<Cita,Integer> {
             "WHERE E.id= :especialidad\n" +
             "AND C.estadoCita.id = 1 OR C.estadoCita.id = 2" +
             "AND C.fecha > CURDATE()")
+
     List<Cita> findCitasByEspecialidad(int especialidad);
 
     @Query("SELECT C FROM Cita C\n" +
@@ -35,5 +37,11 @@ public interface CitaRepository extends JpaRepository<Cita,Integer> {
             "AND P.nombre like %:nombreMedico% "+
             "AND C.estadoCita.id = 1 OR C.estadoCita.id = 2" +
             "AND C.fecha > CURDATE()")
+
     List<Cita> findCitasByEspecialidadAndMedico(int especialidad, String nombreMedico);
+
+    @Query("SELECT C FROM Cita C WHERE DATE(C.fecha)=:fecha AND C.medico.idMedico=:idMedico")
+    List<Cita>findCitasByMedicoAndFecha(int idMedico, Date fecha);
+    //fecha debe ser en formato 'YYYY-MM-DD';
 }
+

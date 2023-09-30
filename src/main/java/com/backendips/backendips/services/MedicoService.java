@@ -45,6 +45,10 @@ public class MedicoService {
         return medicoRepository.findById(id).orElse(null);
     }
 
+    public List<Medico> getMedicosPorEspecilidad(int id){
+        return medicoRepository.findByIdEspecilidad(id);
+    }
+
     public void deleteMedico(Medico medico){
         medicoRepository.delete(medico);
         personaRepository.delete(medico.getPersona());
