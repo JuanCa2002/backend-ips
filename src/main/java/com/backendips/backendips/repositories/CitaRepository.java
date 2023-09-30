@@ -21,8 +21,9 @@ public interface CitaRepository extends JpaRepository<Cita,Integer> {
             "INNER JOIN EspecialidadMedico E\n" +
             "ON M.especialidadMedico.id = E.id\n" +
             "WHERE E.id= :especialidad\n" +
-            "AND C.estadoCita.id = 1 OR C.estadoCita.id = 2 " +
-            "AND C.fecha > NOW()")
+            "AND C.estadoCita.id = 1 OR C.estadoCita.id = 2" +
+            "AND C.fecha > CURDATE()")
+
     List<Cita> findCitasByEspecialidad(int especialidad);
 
     @Query("SELECT C FROM Cita C\n" +
@@ -35,7 +36,8 @@ public interface CitaRepository extends JpaRepository<Cita,Integer> {
             "WHERE E.id= :especialidad\n" +
             "AND P.nombre like %:nombreMedico% "+
             "AND C.estadoCita.id = 1 OR C.estadoCita.id = 2" +
-            "AND C.fecha > NOW()")
+            "AND C.fecha > CURDATE()")
+
     List<Cita> findCitasByEspecialidadAndMedico(int especialidad, String nombreMedico);
 
     @Query("SELECT C FROM Cita C WHERE DATE(C.fecha)=:fecha AND C.medico.idMedico=:idMedico")

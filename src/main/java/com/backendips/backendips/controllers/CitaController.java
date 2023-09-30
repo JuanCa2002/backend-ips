@@ -55,6 +55,17 @@ public class CitaController {
         return ResponseEntity.ok(citaAux);
     }
 
+
+    @PutMapping
+    public ResponseEntity<Cita> updateEstadoCita(@RequestParam("idCita") int idCita,@RequestParam("idEstadoCita") int idEstadoCita){
+   Cita cita= citaService.getCitaById(idCita);
+        if(cita == null){
+            return ResponseEntity.notFound().build();
+        }
+        Cita citaAux= citaService.updateEstadoCita(idCita,idEstadoCita);
+        return ResponseEntity.ok(citaAux);
+    }
+
     @GetMapping("/medico/{idMedico}")
     public ResponseEntity<List<Cita>> getCitasByMedicoAndFecha(@PathVariable int idMedico,@RequestParam("fecha") String fecha){
         try {
@@ -71,15 +82,8 @@ public class CitaController {
 
     }
 
-    @PutMapping("/{idCita}/{idEstadoCita}")
-    public ResponseEntity<Cita> updateEstadoCita(@PathVariable int idCita,@PathVariable int idEstadoCita){
-        Cita cita= citaService.getCitaById(idCita);
-        if(cita == null){
-            return ResponseEntity.notFound().build();
-        }
-        Cita citaAux= citaService.updateEstadoCita(idCita,idEstadoCita);
-        return ResponseEntity.ok(citaAux);
-    }
+
+       
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Cita> deleteCita(@PathVariable int id){
