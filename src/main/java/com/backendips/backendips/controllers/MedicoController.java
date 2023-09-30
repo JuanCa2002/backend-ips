@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/medico")
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")
-public class    MedicoController {
+public class MedicoController {
 
     @Autowired
     private MedicoService medicoService;
@@ -28,6 +28,15 @@ public class    MedicoController {
     @GetMapping
     public ResponseEntity<List<Medico>> getAllMedicos(){
         List<Medico> medicos = medicoService.getAllMedicos();
+        if(medicos.isEmpty()){
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(medicos);
+    }
+
+    @GetMapping("/especialistas/{id}")
+    public ResponseEntity<List<Medico>> getMedicosEspecialistasById(@PathVariable int id){
+        List<Medico> medicos = medicoService.getMedicosPorEspecilidad(id);
         if(medicos.isEmpty()){
             return ResponseEntity.noContent().build();
         }
