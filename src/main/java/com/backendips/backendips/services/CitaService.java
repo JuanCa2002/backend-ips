@@ -24,7 +24,7 @@ public class CitaService {
     private PacienteService pacienteService;
 
     public Cita createCita(Cita cita) {
-        cita.setEstadoCita(estadoCitaRepository.findEstadoCitaById(1));
+        //cita.setEstadoCita(estadoCitaRepository.findEstadoCitaById(1));
         Cita newCita = citaRepository.save(cita);
         return newCita;
     }
