@@ -114,4 +114,14 @@ public class CitaController {
     }
 
 
+    @GetMapping("/paciente/{numeroDocumento}/{idEstadoCita}")
+    public ResponseEntity<List<Cita>> getCitasByCedulaAndIdEstadoCita(@PathVariable String numeroDocumento,@PathVariable int idEstadoCita){
+        List<Cita> citas = citaService.getCitasByCedulaAndIdEstadoCita(numeroDocumento,idEstadoCita);
+        if (citas == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(citas);
+    }
+
+
 }
