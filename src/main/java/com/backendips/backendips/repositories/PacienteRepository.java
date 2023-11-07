@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
 
-    @Query("SELECT pa FROM Paciente pa INNER JOIN Persona pe ON pa.persona.codigo = pe.codigo WHERE pe.numero_documento = :numero_documento")
+    @Query("SELECT pa FROM Paciente pa INNER JOIN Persona pe ON pa.persona.id = pe.id WHERE pe.numeroDocumento = :numero_documento")
     Paciente findPacienteByNumeroDocumento(String numero_documento);
 }

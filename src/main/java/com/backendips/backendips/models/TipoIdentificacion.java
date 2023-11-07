@@ -1,18 +1,16 @@
 package com.backendips.backendips.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name ="\"TIPOS_IDENTIFICACION\"")
+@Table(name = "\"TIPO_IDENTIFICACION\"")
 public class TipoIdentificacion {
 
     @Id
-    private int codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private String tipo;
-
 }

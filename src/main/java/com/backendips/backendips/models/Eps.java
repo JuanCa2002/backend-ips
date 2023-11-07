@@ -1,18 +1,17 @@
 package com.backendips.backendips.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name="\"EPS\"")
+@Table(name = "\"EPS\"")
 public class Eps {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String nombre;
+    private String eps;
 
     private String nit;
 }

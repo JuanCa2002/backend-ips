@@ -53,7 +53,6 @@ public class CitaController {
         return ResponseEntity.ok(citaAux);
     }
 
-
     @PutMapping
     public ResponseEntity<Cita> updateEstadoCita(@RequestParam("idCita") int idCita, @RequestParam("idEstadoCita") int idEstadoCita) {
         Cita cita = citaService.getCitaById(idCita);
@@ -79,7 +78,6 @@ public class CitaController {
         }
 
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Cita> deleteCita(@PathVariable int id) {
@@ -109,7 +107,6 @@ public class CitaController {
         return ResponseEntity.ok(citas);
     }
 
-
     @GetMapping("/paciente/{numeroDocumento}/{idEstadoCita}")
     public ResponseEntity<List<Cita>> getCitasByCedulaAndIdEstadoCita(@PathVariable String numeroDocumento, @PathVariable int idEstadoCita) {
         List<Cita> citas = citaService.getCitasByCedulaAndIdEstadoCita(numeroDocumento, idEstadoCita);
@@ -118,6 +115,4 @@ public class CitaController {
         }
         return ResponseEntity.ok(citas);
     }
-
-
 }

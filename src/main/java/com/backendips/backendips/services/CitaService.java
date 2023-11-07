@@ -41,7 +41,7 @@ public class CitaService {
                 return null;
             }
             cita.setPaciente(paciente);
-            cita.setEstadoCita(estadoCitaRepository.findEstadoCitaById(3));
+            //cita.setEstadoCita(estadoCitaRepository.findEstadoCitaById(3));
             citaRepository.save(cita);
         }
         return cita;
