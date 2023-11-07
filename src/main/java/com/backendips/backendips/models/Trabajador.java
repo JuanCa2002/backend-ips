@@ -3,20 +3,19 @@ package com.backendips.backendips.models;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Data
 @Entity
-@Table(name="\"PACIENTE\"")
-public class Paciente {
+@Data
+@Table(name = "\"TRABAJADOR\"")
+public class Trabajador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name="id_persona")
-    private Persona persona;
+    @Column(name = "cuenta_bancaria")
+    private String cuentaBancaria;
 
     @ManyToOne
-    @JoinColumn(name="id_eps")
-    private Eps eps;
+    @JoinColumn(name = "id_persona")
+    private Persona persona;
 }

@@ -9,10 +9,10 @@ import lombok.Data;
 public class Rol {
 
     @Id
-    private int codigo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name="nombre_id")
+    @JoinColumn(name="id_nombre_rol")
     private NombreRol nombreRol;
-
 }
