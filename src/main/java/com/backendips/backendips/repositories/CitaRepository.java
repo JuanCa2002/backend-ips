@@ -35,7 +35,7 @@ public interface CitaRepository extends JpaRepository<Cita,Integer> {
             "ON M.especialidad.id = E.id\n" +
             "WHERE E.id= :especialidad\n" +
             "AND P.nombre like %:nombreMedico% "+
-            "AND C.estadoCita.id = 1 OR C.estadoCita.id = 2" +
+            "AND C.estadoCita.id in (1,2)" +
             "AND C.fecha > CURDATE()")
 
     List<Cita> findCitasByEspecialidadAndMedico(int especialidad, String nombreMedico);
