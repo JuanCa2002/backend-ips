@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface MedicoRepository extends JpaRepository<Medico, Integer> {
-    @Query("SELECT m FROM Medico m WHERE m.especialidadMedico.id = :id")
+    @Query("SELECT m FROM Medico m WHERE m.especialidad.id = :id")
     List<Medico> findByIdEspecilidad(int id);
 }

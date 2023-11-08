@@ -5,23 +5,21 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name="\"MEDICOS\"")
+@Table(name="\"MEDICO\"")
 public class Medico {
 
     @Id
-    @Column(name="id_medico")
-    private int idMedico;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     @ManyToOne
-    @JoinColumn(name="codigo_persona")
+    @JoinColumn(name="id_persona")
     private Persona persona;
 
     @ManyToOne
-    @JoinColumn(name="especialidad")
-    private EspecialidadMedico especialidadMedico;
+    @JoinColumn(name="id_especialidad")
+    private EspecialidadMedico especialidad;
 
     @Column(name="tarjeta_profesional")
     private String tarjetaProfesional;
-
-
 }

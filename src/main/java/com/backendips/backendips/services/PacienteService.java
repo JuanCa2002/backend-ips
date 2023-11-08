@@ -3,9 +3,11 @@ package com.backendips.backendips.services;
 import com.backendips.backendips.models.Medico;
 import com.backendips.backendips.models.Paciente;
 import com.backendips.backendips.models.Persona;
+import com.backendips.backendips.models.Rol;
 import com.backendips.backendips.repositories.PacienteRepository;
 import com.backendips.backendips.repositories.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,13 +21,21 @@ public class PacienteService {
     @Autowired
     private PersonaRepository personaRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public Paciente createPaciente(Paciente paciente){
         Persona lastPerson = personaRepository.findLastPerson();
         if(lastPerson == null){
-            paciente.getPersona().setCodigo(1);
+            paciente.getPersona().setId(1);
         }else{
-            paciente.getPersona().setCodigo(lastPerson.getCodigo()+1);
+            paciente.getPersona().setId(lastPerson.getId()+1);
         }
+        //asignar Rol de Paciente
+        paciente.getPersona().setRol(new Rol());
+        paciente.getPersona().getRol().setId(1);
+        paciente.getPersona().setPassword(passwordEncoder.encode(paciente.getPersona().getPassword()));
+
         personaRepository.save(paciente.getPersona());
         Paciente newPaciente = pacienteRepository.save(paciente);
         return newPaciente;

@@ -1,6 +1,5 @@
 package com.backendips.backendips.controllers;
 
-import com.backendips.backendips.models.Medico;
 import com.backendips.backendips.models.Paciente;
 import com.backendips.backendips.models.Persona;
 import com.backendips.backendips.services.PacienteService;
@@ -19,9 +18,9 @@ public class PacienteController {
     private PacienteService pacienteService;
 
     @PostMapping
-    public ResponseEntity<Paciente> createPaciente(@RequestBody Paciente paciente){
+    public ResponseEntity<String> createPaciente(@RequestBody Paciente paciente){
         Paciente newPaciente = pacienteService.createPaciente(paciente);
-        return ResponseEntity.ok(newPaciente);
+        return ResponseEntity.ok("Paciente creado con éxito");
     }
 
     @GetMapping
@@ -63,7 +62,7 @@ public class PacienteController {
             persona.setApellido(paciente.getPersona().getApellido());
             persona.setTelefono(paciente.getPersona().getTelefono());
             persona.setCorreo(paciente.getPersona().getCorreo());
-            persona.setTipo_identificacion(paciente.getPersona().getTipo_identificacion());
+            persona.setTipoIdentificacion(paciente.getPersona().getTipoIdentificacion());
             currentPaciente.setPersona(persona);
             currentPaciente.setEps(paciente.getEps());
             Paciente updatedPaciente = pacienteService.updatePaciente(currentPaciente);
