@@ -34,8 +34,9 @@ public class TrabajadorService {
         //asignar Rol de Encargado
         trabajador.getPersona().setRol(new Rol());
         trabajador.getPersona().getRol().setId(2);
-        trabajador.getPersona().setPassword(passwordEncoder.encode(trabajador.getPersona().getPassword()));
-        
+//        trabajador.getPersona().setPassword(passwordEncoder.encode(trabajador.getPersona().getPassword()));
+        trabajador.getPersona().setPassword(passwordEncoder.encode("123abc"));
+
         personaRepository.save(trabajador.getPersona());
         Trabajador newTrabajador = trabajadorRepository.save(trabajador);
         return newTrabajador;
