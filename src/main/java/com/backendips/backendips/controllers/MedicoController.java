@@ -22,7 +22,7 @@ public class MedicoController {
     @PostMapping
     public ResponseEntity<String> createMedico(@RequestBody Medico medico){
         Medico newMedico = medicoService.createMedico(medico);
-        return ResponseEntity.ok("Medico creado con éxito");
+        return ResponseEntity.ok("{\"message\": \"Medico creado con éxito\"}");
     }
 
     @GetMapping

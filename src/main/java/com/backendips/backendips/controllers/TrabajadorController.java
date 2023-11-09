@@ -20,7 +20,7 @@ public class TrabajadorController {
     @PostMapping
     public ResponseEntity<String> createUsuario(@RequestBody Trabajador trabajador) {
         Trabajador newTrabajador = trabajadorService.createEncargado(trabajador);
-        return ResponseEntity.ok("Encargado creado con éxito");
+        return ResponseEntity.ok("{\"message\": \"Encargado creado con éxito\"}");
     }
 
     @GetMapping

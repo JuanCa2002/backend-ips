@@ -34,7 +34,8 @@ public class PacienteService {
         //asignar Rol de Paciente
         paciente.getPersona().setRol(new Rol());
         paciente.getPersona().getRol().setId(1);
-        paciente.getPersona().setPassword(passwordEncoder.encode(paciente.getPersona().getPassword()));
+//        paciente.getPersona().setPassword(passwordEncoder.encode(paciente.getPersona().getPassword()));
+        paciente.getPersona().setPassword(passwordEncoder.encode("123abc"));
 
         personaRepository.save(paciente.getPersona());
         Paciente newPaciente = pacienteRepository.save(paciente);

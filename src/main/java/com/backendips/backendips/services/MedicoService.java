@@ -33,7 +33,8 @@ public class MedicoService {
         //asignar Rol de Medico
         medico.getPersona().setRol(new Rol());
         medico.getPersona().getRol().setId(4);
-        medico.getPersona().setPassword(passwordEncoder.encode(medico.getPersona().getPassword()));
+//        medico.getPersona().setPassword(passwordEncoder.encode(medico.getPersona().getPassword()));
+        medico.getPersona().setPassword(passwordEncoder.encode("123abc"));
 
         personaRepository.save(medico.getPersona());
         Medico newMedico = medicoRepository.save(medico);
