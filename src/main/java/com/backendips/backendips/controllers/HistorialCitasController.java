@@ -37,10 +37,10 @@ public class HistorialCitasController {
     }
 
     @GetMapping("/historial")
-    public ResponseEntity<?> getHistorialByFilter(@RequestParam(name = "numeroDocumento", required = false) String numeroDocumento
-            , @RequestParam(name = "idMedico", required = false) Integer idMedico, @RequestParam(name = "cambio", required = false) Cambio cambio,
+    public ResponseEntity<?> getHistorialByFilter(
+            @RequestParam(name = "idMedico", required = false) Integer idMedico, @RequestParam(name = "cambio", required = false) Cambio cambio,
                                                   @RequestParam(name = "fechaCita", required = false ) LocalDate fechaCita) {
-        List<HistorialCitas> historialCitas = historialCitaService.findHistorialByFilter(numeroDocumento, idMedico, cambio, fechaCita);
+        List<HistorialCitas> historialCitas = historialCitaService.findHistorialByFilter( idMedico, cambio, fechaCita);
         if (historialCitas == null){
             return new ResponseEntity<>("No se encontro nada", HttpStatus.NO_CONTENT);
         }
