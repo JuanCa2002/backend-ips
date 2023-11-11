@@ -26,8 +26,8 @@ public class HistorialCitaService {
         return newHistorialCitas;
     }
 
-    public List<HistorialCitas> findHistorialByFilter(Integer idCita, Integer idMedico, Cambio cambio, LocalDate fechaCita){
-        List<HistorialCitas> historialCitas = historialCitasRepository.findByFilter(idCita, idMedico, cambio, fechaCita);
+    public List<HistorialCitas> findHistorialByFilter(String numeroDocumento, Integer idMedico, Cambio cambio, LocalDate fechaCita){
+        List<HistorialCitas> historialCitas = historialCitasRepository.findByFilter(numeroDocumento, idMedico, cambio, fechaCita);
         if(historialCitas.isEmpty()){
             return null;
         }
