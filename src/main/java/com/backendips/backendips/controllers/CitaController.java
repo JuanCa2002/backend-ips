@@ -2,6 +2,7 @@ package com.backendips.backendips.controllers;
 
 import com.backendips.backendips.models.Cita;
 import com.backendips.backendips.services.CitaService;
+import com.backendips.backendips.services.SmsNotificacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,9 @@ public class CitaController {
 
     @Autowired
     private CitaService citaService;
+
+    @Autowired
+    private SmsNotificacionService smsNotificacionService;
 
     @GetMapping
     public ResponseEntity<List<Cita>> getAllCitas() {
@@ -50,6 +54,7 @@ public class CitaController {
             return ResponseEntity.notFound().build();
         }
         Cita citaAux = citaService.updateCitaPaciente(idCita, idPaciente);
+        smsNotificacionService.notificarUsuarioSMS(idCita,idPaciente);
         return ResponseEntity.ok(citaAux);
     }
 

@@ -13,6 +13,8 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 
     Optional<Persona> findByNumeroDocumento(String numeroDocumento);
 
+    @Query("SELECT p FROM Persona p WHERE p.id= :id")
+    Persona findPersonaById(int id);
 //    @Query("SELECT p FROM Persona p WHERE p.numero_documento = :numero_documento")
 //    Persona findPersonaByNumero_documento(String numero_documento);
 }
