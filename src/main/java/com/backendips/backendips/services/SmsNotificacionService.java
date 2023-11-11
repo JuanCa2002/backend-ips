@@ -22,11 +22,11 @@ public class SmsNotificacionService {
 
 
     public static final String ACCOUNT_SID = "ACadba012815697236063fdebeedcc09fa";
-    public static final String AUTH_TOKEN = "022d02097b3931cd5ff241e4569898d7";
+    public static final String AUTH_TOKEN = "59fdd8d41ac061d47236a73df11ae3aa";
 
     public void notificarUsuarioSMS(int idCita, int idPaciente){
         Cita cita = citaRepository.findCitaById(idCita);
-        String telefono = pacienteRepository.findPacienteById(idPaciente).getTelefono();
+        String telefono = pacienteRepository.findPacienteById(idPaciente).getPersona().getTelefono();
 
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
         Message message = Message.creator(

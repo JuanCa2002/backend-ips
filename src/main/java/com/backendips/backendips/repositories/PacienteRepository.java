@@ -12,5 +12,5 @@ public interface PacienteRepository extends JpaRepository<Paciente, Integer> {
     Paciente findPacienteByNumeroDocumento(String numero_documento);
 
     @Query("SELECT p FROM Paciente p WHERE p.id= :id")
-    Persona findPacienteById(int id);
+    Paciente findPacienteById(int id);
 }
