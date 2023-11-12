@@ -120,4 +120,13 @@ public class CitaController {
         }
         return ResponseEntity.ok(citas);
     }
+
+    @GetMapping("/paciente/{numeroDocumento}")
+    public ResponseEntity<List<Cita>> getConfirmedAndAssignedCitasByCedula(@PathVariable String numeroDocumento) {
+        List<Cita> citas = citaService.findConfirmedAndAssignedCitasByCedula(numeroDocumento);
+        if (citas == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(citas);
+    }
 }
