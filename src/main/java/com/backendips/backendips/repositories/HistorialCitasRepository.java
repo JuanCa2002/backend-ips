@@ -12,9 +12,8 @@ public interface HistorialCitasRepository extends JpaRepository<HistorialCitas, 
 
 
     @Query("SELECT c FROM HistorialCitas c " +
-            "WHERE (:numeroDocumento is null or c.cita.paciente.persona.numeroDocumento = :numeroDocumento )" +
-            "AND (:idMedico is null or c.cita.medico.id = :idMedico)" +
+            "WHERE (:idMedico is null or c.cita.medico.id = :idMedico)" +
             "AND (:cambio is null or c.cambio = :cambio)" +
             "AND (:fechaCita is null or DATE(c.cita.fecha) = :fechaCita)")
-    List<HistorialCitas> findByFilter(String numeroDocumento, Integer idMedico, Cambio cambio, LocalDate fechaCita);
+    List<HistorialCitas> findByFilter( Integer idMedico, Cambio cambio, LocalDate fechaCita);
 }

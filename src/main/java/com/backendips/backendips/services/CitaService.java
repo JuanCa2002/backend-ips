@@ -79,6 +79,10 @@ public class CitaService {
         }
     }
 
+    public List<Cita> findConfirmedAndAssignedCitasByCedula(String numeroDocumento){
+        return citaRepository.findConfirmedAndAssignedCitasByCedula(numeroDocumento);
+    }
+
     public List<Cita> getCitaByEspecialidad(int idEspecialidad){
         return citaRepository.findCitasByEspecialidad(idEspecialidad);
     }
@@ -95,7 +99,5 @@ public class CitaService {
         return citaRepository.findCitasByCedulaAndIdEstadoCita(numeroDocumento, idEstadoCita);
     }
 
-    public List<Cita>getCitasByPacienteAndMedicoAndEstadoCitaAndFecha(int idPaciente, int idMedico){
-        return citaRepository.findCitasByPacienteAndMedicoAndEstadoCitaAndFecha(idPaciente,idMedico);
-    }
+
 }

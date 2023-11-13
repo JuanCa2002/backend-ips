@@ -23,10 +23,14 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     public AuthResponse login(LoginRequest request) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getNumberDocument(), request.getPassword()));
-        UserDetails usuario = personaRepository.findByNumeroDocumento(request.getNumberDocument()).orElseThrow();
-        String token = jwtService.getToken(usuario);
-        return AuthResponse.builder().token(token).build();
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getNumberDocument(), request.getPassword()));
+            UserDetails usuario = personaRepository.findByNumeroDocumento(request.getNumberDocument()).orElseThrow();
+            String token = jwtService.getToken(usuario);
+            return AuthResponse.builder().token(token).build();
+        } catch (Exception ex) {
+            return null;
+        }
     }
 
     public Trabajador createAdmin(Trabajador admin) {
