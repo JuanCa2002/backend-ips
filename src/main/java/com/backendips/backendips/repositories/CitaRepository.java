@@ -60,5 +60,12 @@ public interface CitaRepository extends JpaRepository<Cita,Integer> {
             "AND (C.estadoCita.id = 3 OR C.estadoCita.id = 4)")
     List<Cita>findConfirmedAndAssignedCitasByCedula(String numeroDocumento);
 
+    @Query("SELECT c FROM Cita c " +
+            "WHERE c.paciente.id = :idPaciente " +
+            "AND c.medico.id = :idMedico " +
+            "AND c.estadoCita.id = 3 " +
+            "AND DATE(c.fecha) = CURRENT_DATE")
+            List<Cita> findCitasByPacienteAndMedicoAndEstadoCitaAndFecha(int idPaciente, int idMedico);
+
 }
 

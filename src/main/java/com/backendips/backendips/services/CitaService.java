@@ -99,5 +99,7 @@ public class CitaService {
         return citaRepository.findCitasByCedulaAndIdEstadoCita(numeroDocumento, idEstadoCita);
     }
 
-
+    public List<Cita>getCitasByPacienteAndMedicoAndEstadoCitaAndFecha(int idPaciente, int idMedico){
+        return citaRepository.findCitasByPacienteAndMedicoAndEstadoCitaAndFecha(idPaciente,idMedico);
+    }
 }

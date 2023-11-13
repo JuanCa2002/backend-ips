@@ -129,4 +129,13 @@ public class CitaController {
         }
         return ResponseEntity.ok(citas);
     }
+
+    @GetMapping("/paciente_fecha/{idPaciente}")
+    public ResponseEntity<List<Cita>> getCitasByPacienteAndMedicoAndEstadoCitaAndFecha(@PathVariable int idPaciente,@RequestParam("idMedico") int idmedico){
+        List<Cita> citas = citaService.getCitasByPacienteAndMedicoAndEstadoCitaAndFecha(idPaciente,idmedico);
+        if(citas == null){
+            return ResponseEntity.ok(null);
+        }
+        return  ResponseEntity.ok(citas);
+    }
 }
