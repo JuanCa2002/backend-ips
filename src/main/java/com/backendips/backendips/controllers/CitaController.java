@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.transform.sax.SAXSource;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -131,8 +133,8 @@ public class CitaController {
     }
 
     @GetMapping("/paciente_fecha/{idPaciente}")
-    public ResponseEntity<List<Cita>> getCitasByPacienteAndMedicoAndEstadoCitaAndFecha(@PathVariable int idPaciente,@RequestParam("idMedico") int idmedico){
-        List<Cita> citas = citaService.getCitasByPacienteAndMedicoAndEstadoCitaAndFecha(idPaciente,idmedico);
+    public ResponseEntity<List<Cita>> getCitasByPacienteAndMedicoAndEstadoCitaAndFecha(@PathVariable int idPaciente,@RequestParam("idMedico") int idmedico, @RequestParam("fecha") LocalDate fecha){
+        List<Cita> citas = citaService.getCitasByPacienteAndMedicoAndEstadoCitaAndFecha(idPaciente,idmedico, fecha);
         if(citas == null){
             return ResponseEntity.ok(null);
         }

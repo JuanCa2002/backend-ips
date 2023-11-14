@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -63,9 +64,9 @@ public interface CitaRepository extends JpaRepository<Cita,Integer> {
     @Query("SELECT c FROM Cita c " +
             "WHERE c.paciente.id = :idPaciente " +
             "AND c.medico.id = :idMedico " +
-            "AND c.estadoCita.id = 3 " +
-            "AND DATE(c.fecha) = CURRENT_DATE")
-            List<Cita> findCitasByPacienteAndMedicoAndEstadoCitaAndFecha(int idPaciente, int idMedico);
+            "AND DATE(c.fecha) = :fecha " +
+            "AND (c.estadoCita.id = 3 OR c.estadoCita.id = 4)")
+            List<Cita> findCitasByPacienteAndMedicoAndEstadoCitaAndFecha(int idPaciente, int idMedico, LocalDate fecha);
 
 }
 

@@ -8,6 +8,7 @@ import com.backendips.backendips.repositories.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -99,7 +100,7 @@ public class CitaService {
         return citaRepository.findCitasByCedulaAndIdEstadoCita(numeroDocumento, idEstadoCita);
     }
 
-    public List<Cita>getCitasByPacienteAndMedicoAndEstadoCitaAndFecha(int idPaciente, int idMedico){
-        return citaRepository.findCitasByPacienteAndMedicoAndEstadoCitaAndFecha(idPaciente,idMedico);
+    public List<Cita>getCitasByPacienteAndMedicoAndEstadoCitaAndFecha(int idPaciente, int idMedico, LocalDate fecha){
+        return citaRepository.findCitasByPacienteAndMedicoAndEstadoCitaAndFecha(idPaciente,idMedico, fecha);
     }
 }
